@@ -243,3 +243,13 @@ function translateText(text, origin, dest) {
   }
   return LanguageApp.translate(text, origin, dest);
 }
+function getTextAndTranslation(origin, dest, savePrefs) {
+  var result = {};
+  var text = getSelectedText();
+  result['text'] = text.join('\p');
+
+  if (savePrefs == true) {
+    var userProperties = PropertiesService.getUserProperties();
+    userProperties.setProperty('originLang', origin);
+    userProperties.setProperty('destLang', dest);
+  }
